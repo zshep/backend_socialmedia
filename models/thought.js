@@ -3,14 +3,26 @@ const mongoose =require('mongoose');
 
 const thoughtSchema = new mongoose.Schema(
     {
-        thoughtText: {type: String, require: true,},
-        //add in requirement for text to be 1-280 characters
-        createdAt :{ type: Date,
+        thoughtText: {
+            type: String, 
+            required: true,
+            minLength: 1,
+            maxLength: 280,
         },
-        //set deault value to the current timestamp
+        
+        createdAt: {
+            type :Date,
+            default: () => Date.now(),
+        },
         //use a getter method to format the timestamd on query
 
-        username: {type: String, require: true}
+        username: {
+            type: String, 
+            required: true
+        },
+
+        reactions: {}
+        //array of nested documents created with the reactionSchema
 
 
     }
