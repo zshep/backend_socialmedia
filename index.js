@@ -14,9 +14,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-app.get('/all-users', (req,res) => {
+app.get('/all-users', async (req,res) => {
   //grabing the db to see if it worked
-  user.find({}, (err, result) => {
+  await user.find({}, (err, result) => {
     if (err) {
       res.status(500).send({ message: 'we could not grab the users'});
     } else {

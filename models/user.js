@@ -30,6 +30,13 @@ const userSchema = new mongoose.Schema(
 );
 
 const user = mongoose.model('user', userSchema);
+if(user){
+    user.collection.drop();
+    
+} else {
+    console.log('better hold on to your buts')
+};
+
 //handle error (if any)
 const handleError = (err) => console.error(err);
 
