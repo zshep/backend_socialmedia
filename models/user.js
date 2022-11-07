@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema(
             unique: true,    
             trim: true,
             lowercase: true,
+            immutable: false,
             //match: '/.+\@.+\..+/',
         },
         
@@ -22,34 +23,22 @@ const userSchema = new mongoose.Schema(
         thoughts: [],
                       
         //array of id reference user model()
-        friends: [mongoose.SchemaTypes.ObjectId],
-        
+        friends: {
+            type: mongoose.SchemaTypes.ObjectId,
+            ref: 'Users'
             //friendCount
                 // retrieve friendarray.length
-    } 
+         }
+
+    }     
 );
 
 const users = mongoose.model('user', userSchema);
-if(users){
-    users.collection.drop();
-    
-} else {
-    console.log('better hold on to your buts')
-};
+
 
 //handle error (if any)
 const handleError = (err) => console.error(err);
 
-// ----------------testing the create??-------------
-// users.create(
-//     {
-//         username: 'Q',
-//         email: 'Quak@gmail.com',
-    
-//     },
-//     (err) => (err ? handleError(err) : console.log('user document created'))
-
-// )
 
 module.exports = users;
     
