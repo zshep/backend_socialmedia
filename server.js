@@ -1,32 +1,18 @@
 const express = require('express');
 const db = require('./config/connection');
+const routes =require('./routes');
 //const mongodb = require('mongodb').MongoClient;
-const { user } = require('./models/user');
 
 const PORT = process.env.PORT ||  3001;
 const app = express();
 
 
-
-
 //using express to parse incoming objects
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(routes);
 
-
-app.get('/all-users', async (req,res) => {
-  //grabing the db to see if it worked
-  await user.find({}, (err, result) => {
-    if (err) {
-      res.status(500).send({ message: 'we could not grab the users'});
-    } else {
-      res.status(200).json(result);
-      console.log('the user have been gotten')
-    }
-    });
-  });
-
-
+ 
 
 db.once('open', () => {
   app.listen(PORT, () => {

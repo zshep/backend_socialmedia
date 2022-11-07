@@ -29,9 +29,9 @@ const userSchema = new mongoose.Schema(
     } 
 );
 
-const user = mongoose.model('user', userSchema);
-if(user){
-    user.collection.drop();
+const users = mongoose.model('user', userSchema);
+if(users){
+    users.collection.drop();
     
 } else {
     console.log('better hold on to your buts')
@@ -40,15 +40,16 @@ if(user){
 //handle error (if any)
 const handleError = (err) => console.error(err);
 
-user.create(
-    {
-        username: 'Q',
-        email: 'Q@gmail.com',
+// ----------------testing the create??-------------
+// users.create(
+//     {
+//         username: 'Q',
+//         email: 'Quak@gmail.com',
     
-    },
-    (err) => (err ? handleError(err) : console.log('user document created'))
+//     },
+//     (err) => (err ? handleError(err) : console.log('user document created'))
 
-)
+// )
 
-module.exports = user;
+module.exports = users;
     
