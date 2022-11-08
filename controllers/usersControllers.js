@@ -4,12 +4,13 @@ const User = require('../models/User');
 //exporting the following ....CRUD routes?
 
 module.exports = {
-
+  //get all users
     getUsers(req, res) {
         User.find()
           .then((users) => res.json(users))
           .catch((err) => res.status(500).json(err));
       },
+      // get a single user by id
       getSingleUser(req, res) {
         User.findOne({ _id: req.params.userId })        
           .then((user) =>
@@ -40,7 +41,7 @@ module.exports = {
         .catch((err) => res.status(500).json(err));  
       },
 
-      //delete user
+      //delete user by id
       deleteUser(req, res) {
         User.findByIdAndDelete(
             {_id: req.params.userId},
@@ -55,4 +56,11 @@ module.exports = {
 };
 
 
+
+// //create new friend to a user
+// createNewfriend(req, res) {
+//   thoughts.create(req.body)
+//       .then((dbThoughtData) => res.json(dbThoughtData))
+//       .catch((err) => res.status(500).json(err));
+// },
 

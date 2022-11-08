@@ -21,18 +21,6 @@ db.once('open', () => {
 });
 
 
-// // -------------------------trying stuff ---------------------
-// app.post('/create', (req, res) => {
-  
-//   //creating data to see if I can pull it up somewhere
-//   db.collection('userCollection').insertOne(
-//     {username: 'zshepers', email: 'zshep@gmail.com' },
-//     (err, results) => {
-//       if (err) throw err;
-//       res.json(results);
-//       console.log(results);
-//     }
-//   )
-// });
+
 
 

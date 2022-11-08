@@ -35,10 +35,5 @@ const userSchema = new mongoose.Schema(
 
 const users = mongoose.model('user', userSchema);
 
-
-//handle error (if any)
-const handleError = (err) => console.error(err);
-
-
 module.exports = users;
     

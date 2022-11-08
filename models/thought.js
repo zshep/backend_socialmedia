@@ -27,3 +27,7 @@ const thoughtSchema = new mongoose.Schema(
 
     }
 )
+// creating a model of the thought schema
+const thoughts = mongoose.model('thought', thoughtSchema);
+//exporting
+module.exports = thoughts;
