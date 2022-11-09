@@ -1,4 +1,7 @@
-const mongoose = require('mongoose');
+const { Schema, model, default: mongoose}= require('mongoose');
+
+
+
 
 const userSchema = new mongoose.Schema(
     {
@@ -20,18 +23,38 @@ const userSchema = new mongoose.Schema(
         },
         
         //array of id referenceing thought model
-        thoughts: [],
+        thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'thought'
+                
+            }
+        ],
                       
         //array of id reference user model()
-        friends: {
-            type: mongoose.SchemaTypes.ObjectId,
-            ref: 'Users'
-            //friendCount
-                // retrieve friendarray.length
-         }
-
-    }     
+        friends: [
+            {
+            type: Schema.Types.ObjectId,
+            ref: 'Users',
+            
+            }
+        ],
+    },
+    {
+        toJson: {
+            virtuals: true,
+        },
+        id: false,
+    },
+    
 );
+
+//adding virtual to find total number of friends 
+userSchema.virtual('friendCount').get(function(){
+    return this.friends.length;
+
+});
+
 
 const users = mongoose.model('user', userSchema);
 

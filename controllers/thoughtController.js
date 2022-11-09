@@ -22,13 +22,19 @@ module.exports = {
             .catch((err) => res.status(500).json(err));
 
     },
-        //TO DO: figure out how to add to users thought array
     //create a new thought and add to users thought []
     createThought(res, req){
         thoughts.create(req.body)
-            .then((dbThoughtData) => res.json(dbThoughtData))
-            .catch((err) => res.status(500).json(err));
-    },
+        //TO DO: figure out how to add to users thought array
+            .then((dbThoughtData) => users.findoneAndUpdate(
+                {_id: req.body.userId},
+                {$addToSet: { thoughts: _id } },
+                { new : true },
+                ))
+                .then((user) => !user ? res.status(404).json({ message: 'user is not found',}) : res.json({ meassage: 'user successfuly updated with thought'})
+                )
 
-    
-}
+            .catch((err) => res.status(500).json(err));
+    }
+   
+};
