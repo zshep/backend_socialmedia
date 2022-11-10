@@ -10,8 +10,10 @@ const {
 
 } =require('../../controllers/thoughtController');
 
-// /api/thoughts - get all thoughts AND post any new ones
-router.route('/').get(getThoughts).post(createThought);
+// /api/thoughts - get all thoughts 
+router.route('/').get(getThoughts);
+    // create new thought
+router.route('/').post(createThought);
 
 // /api/thoughts/:thoughtId get thought by id
 router.route('/:thoughtsId').get(getSingleThought);

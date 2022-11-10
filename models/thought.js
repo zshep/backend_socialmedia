@@ -35,8 +35,6 @@ const reactionSchema = new mongoose.Schema(
         id: false,
     },
 
-
-
 )
 
 const thoughtSchema = new mongoose.Schema(
@@ -77,9 +75,6 @@ thoughtSchema.virtual('reactionCounter').get(function(){
     return this.reactions.length;
 
 });
-
-
-
 
 
 // creating a model of the thought schema
