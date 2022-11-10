@@ -83,7 +83,7 @@ module.exports = {
     //deleting reaction by id
     deleteReaction(req, res) {
         thoughts.findOneAndUpdate(
-            {_id: req. params.thoughtId},
+            {_id: req.params.thoughtsId},
             {$pull: { reactions: {_id: req.body.reactionId }}},
             { new: true},
 

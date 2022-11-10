@@ -51,16 +51,33 @@ module.exports = {
                 ? res.status(404).json({ message: 'No user with that ID' }) : res.json(user)
         )
             .catch((err) => res.status(500).json(err));
+        },
 
+        // add user as a friend to another user
+        addFriend(req, res) {
+          User.findByIdAndUpdate(
+            {_id: req.params.userId},
+            { $push: { friends: req.params.friendId} }
+          )
+            .then((newFriend) => res.json(newFriend)
+          )
+            .catch((err) => res.status(500).json(err));
+
+        },
+        // delete friend from user's friend list
+        deleteFriend(req, res) {
+          User.findOneAndUpdate( 
+            {_id: req.params.userId},
+            { $pull : {friends : req.params.friendId}}
+          )
+            .then((nofriend) => res.json(nofriend)
+          )
+          .catch((err) => {res.status(500).json(err)
+            console.error(err);
+            });
         }
 };
 
 
 
-// //create new friend to a user
-// createNewfriend(req, res) {
-//   thoughts.create(req.body)
-//       .then((dbThoughtData) => res.json(dbThoughtData))
-//       .catch((err) => res.status(500).json(err));
-// },
 
